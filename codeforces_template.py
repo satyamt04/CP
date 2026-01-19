@@ -8,8 +8,10 @@ import math
 # If recursion is used (DFS on large trees), bump the limit:
 sys.setrecursionlimit(1 << 25)
 
-
 data = sys.stdin.buffer.read().split()
+# with open("input.txt", "rb") as f:
+#     data = f.read().split()
+
 it = iter(data)
 
 def nstr() -> str:
@@ -142,11 +144,16 @@ def solve_one():
     Write your per-test-case solution here.
     Use nint(), nstr(), nlst(n), etc. to read input quickly.
     """
-    n = nint()
-    
+    a,b,c = nlst(3)
 
-def main():
-    T = nint()
+    for i in range(c//a+1):
+        if (c-a*i)%b==0:
+            write("YES\n")
+            return
+    write("NO\n")
+
+def main(): 
+    T = 1
     for _ in range(T):
         solve_one()
 
