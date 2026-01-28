@@ -53,6 +53,23 @@ def ceil_div(a: int, b: int) -> int:
 def lcm(a: int, b: int) -> int:
     return a // gcd(a, b) * b
 
+def fib(n):
+    """
+    Compute F(n) and F(n+1) using fast doubling method in O(log n) time.
+    Returns (F(n), F(n+1))
+    """
+    if n == 0:
+        return (0, 1)
+    
+    f_n, f_n1 = fib(n >> 1)
+    c = f_n * (2 * f_n1 - f_n)
+    d = f_n * f_n + f_n1 * f_n1
+    
+    if n & 1: 
+        return (d, c + d)
+    else:
+        return (c, d)
+    
 # Precompute factorials (enable if needed)
 def precompute_fact(n: int, mod=MOD):
     fact = [1] * (n + 1)
@@ -138,19 +155,13 @@ class DSU:
 
 # ---------------------------------------- Main Solution ----------------------------------------
 
-
 def solve_one():
     """
     Write your per-test-case solution here.
     Use nint(), nstr(), nlst(n), etc. to read input quickly.
     """
-    a,b,c = nlst(3)
-
-    for i in range(c//a+1):
-        if (c-a*i)%b==0:
-            write("YES\n")
-            return
-    write("NO\n")
+    a = nint()
+    write(str(fib(a)[0]))
 
 def main(): 
     T = 1
